@@ -55,7 +55,7 @@ query {
 4. Update User
 ```GraphQL
 mutation {
-  updateUser(id: "<ID>>", age: 50) {
+  updateUser(id: "<ID>", age: 50) {
     id
     firstName
     age
