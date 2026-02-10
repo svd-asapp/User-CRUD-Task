@@ -22,21 +22,23 @@ npm start
 
 1. Create a User
 ```GraphQL
-mutation {
-  createUser(firstName: "abc", lastName: "X Y", age: 25) {
-    id
+mutation CreateUser($firstName: String!, $lastName: String!, $age: Int) {
+  createUser(firstName: $firstName, lastName: $lastName, age: $age) {
     firstName
+    id
+    lastName
+    age
   }
 }
 ```
 
 2. Fetch All Users
 ```GraphQL
-query {
+query GetUsers {
   getUsers {
+    lastName
     id
     firstName
-    lastName
     age
   }
 }
@@ -44,9 +46,10 @@ query {
 
 3. Fetch Single User (By ID)
 ```GraphQL
-query {
-  getUser(id: "<ID>") {
+query GetUser($getUserId: ID!) {
+  getUser(id: $getUserId) {
     firstName
+    lastName
     age
   }
 }
@@ -54,8 +57,9 @@ query {
 
 4. Update User
 ```GraphQL
-mutation {
-  updateUser(id: "<ID>", age: 50) {
+mutation UpdateUser($updateUserId: ID!, $firstName: String, $lastName: String, $age: Int) {
+  updateUser(id: $updateUserId, firstName: $firstName, lastName: $lastName, age: $age) {
+    lastName
     id
     firstName
     age
@@ -65,7 +69,7 @@ mutation {
 
 5. Delete User
 ```GraphQL
-mutation {
-  deleteUser(id: "<ID>")
+mutation DeleteUser($deleteUserId: ID!) {
+  deleteUser(id: $deleteUserId)
 }
 ```
